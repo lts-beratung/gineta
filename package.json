@@ -1,6 +1,6 @@
 {
 	"name": "gineta",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Get the version information of a github repository in json format.",
 	"license": "MIT",
 	"repository": "lts-beratung/gineta",
