@@ -1,0 +1,35 @@
+{
+	"name": "gineta",
+	"version": "0.0.0",
+	"description": "Get the version information of a github repository in json format.",
+	"license": "MIT",
+	"repository": "lts-beratung/gineta",
+	"author": {
+		"name": "valcaza",
+		"email": "victor.alcazar@lts-beratung.de",
+		"url": "lts-beratung.de"
+	},
+	"bin": "cli.js",
+	"engines": {
+		"node": ">=6"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js",
+		"cli.js"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		""
+	],
+	"dependencies": {
+		"meow": "^5.0.0"
+	},
+	"devDependencies": {
+		"ava": "^0.25.0",
+		"xo": "^0.21.0"
+	}
+}
