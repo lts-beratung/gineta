@@ -4,17 +4,29 @@ const meow = require('meow');
 const gineta = require('.');
 
 const cli = meow(`
-	Usage
-	  $ gineta [input]
+  Usage
+    gineta [directory]
 
-	Options
-	  --foo  Lorem ipsum [Default: false]
+	Arguments
+		directory: Specify the directory to get the git information from
+  Examples
+    $ gineta
+// => {
+				"date": "Wed Mar 27 15:11:39 CET 2019",
+				"hostname": "vikepic.computer",
+				"username": "vikepic",
+				"gitCommitHash": "7858b44db7d0084466bafd1ab0681b10232ecba8",
+				"gitVersion": "* commit 7858b44db7d0084466bafd1ab0681b10232ecba8 (HEAD -> master, origin/master)
+				Author: vikepic <vikepic@mail.com>
+				Date:   Wed Mar 27 14:07:37 2019 +0100
 
-	Examples
-	  $ gineta
-	  unicorns & rainbows
-	  $ gineta ponies
-	  ponies & rainbows
+						:tada: Initial commit",
+				"gitDirty": "",
+				"gitChanges": "M cli.js
+			 M index.js
+			 M readme.md"
+	   }
 `);
 
-console.log(JSON.stringify(gineta(cli.input[0] || '.'), null, 2));
+const jsonResult = JSON.stringify(gineta(cli.input[0] || '.'), null, 2);
+console.log(jsonResult.replace(/\\n/g, '\n'));

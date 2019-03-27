@@ -1,42 +1,45 @@
 'use strict';
-const { spawnSync } = require( 'child_process' );
+const {spawnSync} = require('child_process');
 
-module.exports = (baseDir) => {
-	let result = {};
+module.exports = baseDir => {
+	const result = {};
 
 	result.date = getCommandOutput('date');
 	result.hostname = getCommandOutput('hostname');
 	result.username = getCommandOutput('whoami');
 
-	const useBaseDirOptions = { cwd: baseDir };
+	const useBaseDirOptions = {cwd: baseDir};
 
 	result.gitCommitHash = getCommandOutput(
-		"git rev-parse HEAD",
-		[], useBaseDirOptions);
+		'git', ['rev-parse', 'HEAD'],
+		useBaseDirOptions);
+
 	result.gitVersion = getCommandOutput(
-		"git log --graph --decorate -1 | sed -e 's/^[ \t]*//' | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/\n  /g'",
-		[], useBaseDirOptions);
+		'git', ['log', '--graph', '--decorate', '-1'],
+		useBaseDirOptions);
+
 	result.gitDirty = getCommandOutput(
-		"git diff --quiet HEAD",
-		[], useBaseDirOptions);
-	result.gitChanges=getCommandOutput(
-		"git status --short | sed -e 's/^[ \t]*//' | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/\n  /g' | head -n10",
-		[], useBaseDirOptions);
+		'git', ['diff', '--quiet', 'HEAD'],
+		useBaseDirOptions);
+
+	result.gitChanges = getCommandOutput(
+		'git', ['status', '--short'],
+		useBaseDirOptions);
+
 	return result;
 };
 
-function getCommandOutput(command, args = [], options)
-{
+function getCommandOutput(command, args = [], options) {
 	const spawnedCommand = spawnSync(command, args, options);
 
-	if(spawnedCommand.stderr)
-	{
-		console.error(spawnedCommand.stderr.toString());
+	if (spawnedCommand.error) {
+		console.error(`Command errored:`);
+		console.error(`  ${command}`);
+		console.error(spawnedCommand.error.toString());
 	}
 
-	if(spawnedCommand.stdout)
-	{
-		return spawnedCommand.stdout.toString();
+	if (spawnedCommand.stdout) {
+		return spawnedCommand.stdout.toString().trim();
 	}
 	return null;
 }
