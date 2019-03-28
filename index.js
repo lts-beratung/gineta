@@ -10,20 +10,30 @@ module.exports = baseDir => {
 
 	const useBaseDirOptions = {cwd: baseDir};
 
-	result.gitCommitHash = getCommandOutput(
+	result.commit = {};
+
+	result.commit.hash = getCommandOutput(
 		'git', ['rev-parse', 'HEAD'],
 		useBaseDirOptions);
 
-	result.gitVersion = getCommandOutput(
-		'git', ['log', '--graph', '--decorate', '-1'],
+	result.commit.subject = getCommandOutput(
+		'git', ['log', '--pretty=%s', '--max-count', '1'],
 		useBaseDirOptions);
 
-	result.gitDirty = getCommandOutput(
-		'git', ['diff', '--quiet', 'HEAD'],
+result.commit.body = getCommandOutput(
+		'git', ['log', '--pretty=%b', '--max-count', '1'],
 		useBaseDirOptions);
 
-	result.gitChanges = getCommandOutput(
-		'git', ['status', '--short'],
+	result.commit.author = getCommandOutput(
+		'git', ['log', '--pretty=%an', '--max-count', '1'],
+		useBaseDirOptions);
+
+	result.commit.date = getCommandOutput(
+		'git', ['log', '--pretty=%aD', '--max-count', '1'],
+		useBaseDirOptions);
+
+	result.commit.changes = getCommandOutput(
+		'git', ['diff', 'HEAD~', '--shortstat'],
 		useBaseDirOptions);
 
 	return result;
