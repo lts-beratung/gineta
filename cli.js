@@ -5,28 +5,27 @@ const meow = require('meow');
 const gineta = require('.');
 
 const cli = meow(`
-	Usage
-		gineta [directory]
+  Usage
+    gineta [directory] [output]
 
 	Arguments
-		directory: Specify the directory to get the git information from
-	Examples
-		$ gineta
+		directory: Specify the directory to get the git information from.
+		output: Specify the optional output directory to write the output to.
+  Examples
+    $ gineta
 // => {
-				"date": "Wed Mar 27 15:11:39 CET 2019",
-				"hostname": "vikepic.computer",
+				"date": "Thu Mar 28 12:22:58 CET 2019",
+				"hostname": "vikepic.local",
 				"username": "vikepic",
-				"gitCommitHash": "7858b44db7d0084466bafd1ab0681b10232ecba8",
-				"gitVersion": "* commit 7858b44db7d0084466bafd1ab0681b10232ecba8 (HEAD -> master, origin/master)
-				Author: vikepic <vikepic@mail.com>
-				Date:   Wed Mar 27 14:07:37 2019 +0100
-
-						:tada: Initial commit",
-				"gitDirty": "",
-				"gitChanges": "M cli.js
-			 M index.js
-			 M readme.md"
-		 }
+				"commit": {
+					"hash": "7375605bd043d979a3a9edf09dee4964ca2c17c2",
+					"subject": "Added one-lined output",
+					"body": "",
+					"author": "vikepic",
+					"date": "Thu, 28 Mar 2019 12:21:35 +0100",
+					"changes": "1 file changed, 17 insertions(+), 7 deletions(-)"
+				}
+			}
 `);
 
 const originPath = cli.input[0];

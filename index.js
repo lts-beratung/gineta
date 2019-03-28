@@ -20,7 +20,7 @@ module.exports = baseDir => {
 		'git', ['log', '--pretty=%s', '--max-count', '1'],
 		useBaseDirOptions);
 
-result.commit.body = getCommandOutput(
+	result.commit.body = getCommandOutput(
 		'git', ['log', '--pretty=%b', '--max-count', '1'],
 		useBaseDirOptions);
 
