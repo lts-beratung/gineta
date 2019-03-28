@@ -49,7 +49,9 @@ function getCommandOutput(command, args = [], options) {
 	}
 
 	if (spawnedCommand.stdout) {
-		return spawnedCommand.stdout.toString().trim();
+		const commandOutput = spawnedCommand.stdout.toString();
+		const singleLineOutput = commandOutput.trim().replace(/\r?\n|\r/g, ' ');
+		return singleLineOutput;
 	}
 	return null;
 }
