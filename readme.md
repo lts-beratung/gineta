@@ -1,6 +1,6 @@
-# gineta [![Build Status](https://travis-ci.org/lts-beratung/gineta.svg?branch=master)](https://travis-ci.org/lts-beratung/gineta)
+# gineta [![install size](https://flat.badgen.net/packagephobia/install/gineta)](https://packagephobia.now.sh/result?p=gineta) [![XO code style](https://flat.badgen.net/xo/status/standup-boy)](https://github.com/xojs/xo) 
 
-> Get the version information of a github repository in json format.
+> Get a json object with the version information of the git repository you're working in :bookmark:
 
 ## Install
 
