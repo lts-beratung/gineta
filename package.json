@@ -26,9 +26,9 @@
 		""
 	],
 	"dependencies": {
-		"meow": "^5.0.0"
+		"meow": "5.0.0"
 	},
 	"devDependencies": {
-		"xo": "^0.21.0"
+		"xo": "0.21.0"
 	}
 }
